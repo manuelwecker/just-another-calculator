@@ -10,17 +10,25 @@ const Key = styled.button`
   text-align: center;
   color: white;
   font-size: 30px;
-  line-height: 80px;
   user-select: none;
   &:active {
     transform: scale(0.95);
   }
 `;
 
-export default function ActionKey({ action }) {
-  let span = "";
+export default function ActionKey({ action, onActionKeyPress }) {
+  let span = "span 1";
   if (action === "next") {
     span = "span 4";
   }
-  return <Key span={span}>{action}</Key>;
+
+  function handleClick() {
+    onActionKeyPress(action);
+  }
+
+  return (
+    <Key span={span} onClick={handleClick}>
+      {action}
+    </Key>
+  );
 }
